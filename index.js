@@ -1,7 +1,6 @@
-const { XMLParser } = require('fast-xml-parser')
+const parseXML = require('./lib/parse-xml')
 
 module.exports = async function parser(opts = {}) {
-  let parser = new XMLParser()
   let content = opts.file
   if (opts.url) {
     // TODO: add in URL handling / fetching, e.g. of a sitemap
@@ -9,7 +8,7 @@ module.exports = async function parser(opts = {}) {
     content = opts.url
   }
 
-  const parsed = await parser.parse(content)
+  const parsed = await parseXML(content)
 
   const urls = new Set()
 
